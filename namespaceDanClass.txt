@@ -1,0 +1,106 @@
+//name space
+namespace fungsi{
+  void satu(void){
+  	Serial.println("print 1");    
+  }
+  void dua(void){
+  	Serial.println("print 2");    
+  }
+  void tiga(void){
+  	Serial.println("print 3");    
+  }
+};
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  fungsi::tiga();
+}
+
+//name space
+namespace fungsi{
+  void satu(void);
+  void dua(void);
+  void tiga(void);
+};
+
+void fungsi::satu(void){
+  Serial.println("print 1");    
+}
+void fungsi::dua(void){
+  Serial.println("print 2");    
+}
+void fungsi::tiga(void){
+  Serial.println("print 3");    
+}
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  fungsi::tiga();
+}
+
+//calss
+class fungsi{
+  private:
+  public:
+  void satu(void){
+  	Serial.println("print 1");    
+  }
+  void dua(void){
+  	Serial.println("print 2");    
+  }
+  void tiga(void){
+  	Serial.println("print 3");    
+  }
+};
+
+fungsi cetak;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  cetak.tiga();
+}
+
+
+//class
+class fungsi{
+  private:
+  public:
+  void satu(void);
+  void dua(void);
+  void tiga(void);
+};
+
+void fungsi::satu(void){
+  Serial.println("print 1");    
+}
+void fungsi::dua(void){
+  Serial.println("print 2");    
+}
+void fungsi::tiga(void){
+  Serial.println("print 3");    
+}
+
+fungsi cetak;
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  cetak.tiga();
+}

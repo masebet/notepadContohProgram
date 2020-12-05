@@ -1,0 +1,227 @@
+//Serial
+void setup()
+{
+  Serial.begin(9600);
+}
+
+String in;
+void loop()
+{ 
+  if(Serial.available()){
+  	in = Serial.readString();
+  }
+  Serial.println(in);
+}
+
+//ascii to binery
+void setup()
+{
+  Serial.begin(9600);
+}
+
+String in;
+void loop()
+{ 
+  if(Serial.available()){
+  	in = Serial.readString();
+  }
+  int a = in.toInt();
+  Serial.println(a+3);
+}
+
+//ascii to binery
+void setup()
+{
+  Serial.begin(9600);
+}
+
+String in;
+void loop()
+{ 
+  if(Serial.available()){
+  	in = Serial.readString();
+  }
+  float a = in.toFloat();
+  Serial.println(a);
+}
+
+//Serial
+void setup()
+{
+  Serial.begin(9600);
+}
+
+String in;
+void loop()
+{ 
+  if(Serial.available()){
+  	in = Serial.readString();
+  }
+  if(in.indexOf("hallo")>-1) Serial.println("hai");
+  else Serial.println("tidak cocok");
+}
+
+//parse
+void setup()
+{
+  Serial.begin(9600);
+}
+
+char in[100]="$c1,2000,2000\r\n";
+void loop()
+{ 
+  for(int i=0;i<strlen(in);i++){
+    char buff = in[i];
+    fuseData(buff);
+  }
+  delay(2000);
+}
+
+struct varParse {
+    bool ok;  
+    char words[20][15];
+    int     wordIdx;        // the current word in a sentence
+    int     prevIdx;		// last character index where we did a cut
+    int     nowIdx ;		// current character index
+};
+
+struct varParse gpp;
+
+void parseData(){
+  //atoi(gpp.words[1]);
+  //atoi(gpp.words[2]);
+
+  Serial.println(gpp.words[0]);
+  Serial.println(gpp.words[1]);
+  Serial.println(gpp.words[2]);
+  Serial.println(gpp.words[3]);
+  Serial.println(gpp.words[4]);
+}
+
+void fuseData(char c)
+{
+  
+	if (c == '$') {
+		gpp.ok = true;
+                gpp.wordIdx = 0; gpp.prevIdx = 0; gpp.nowIdx = 0;
+        }
+
+	if (gpp.ok) {
+		// check ending
+		if (c == '\r' || c== '\n') {
+                        gpp.ok = false;
+			// parse
+                        parseData();
+		} else {
+			// build a word
+			gpp.words[gpp.wordIdx][gpp.nowIdx - gpp.prevIdx] = c;
+			if (c == ',') {
+				gpp.words[gpp.wordIdx][gpp.nowIdx - gpp.prevIdx] = 0;
+				gpp.wordIdx++;
+				gpp.prevIdx = gpp.nowIdx;
+			}
+			else gpp.nowIdx++;
+		}
+	}
+
+    return;
+}
+
+//binery hex to ascii
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{ 
+  char out[10];
+  int in[10] = {'2','3',1,2,2,5,1,1,1,0};
+  
+  char i, b;        
+  for (i = 0; i < 10; ++i)
+  {
+    b = (in[i] >> 4);        
+    out[i*2] = (char)(b > 9 ? b + 0x37 : b + 0x30);  
+
+    b = ((in[i] & 0xF));
+    out[i * 2 + 1] = (char)(b > 9 ? b + 0x37 : b + 0x30);
+  }//*/
+  String zz(out);
+  Serial.println(zz);
+}
+
+
+//ascii hex to binery
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{ 
+  char in[10]="010f0102";
+  char out[10];
+  
+  hex2bin(in, out);
+  
+  for(int i=0;i<10;i++) {Serial.print(out[i],HEX);Serial.print(" ");}
+  Serial.println();
+}
+
+int char2int(char input)
+{
+  if(input >= '0' && input <= '9')
+    return input - '0';
+  if(input >= 'A' && input <= 'F')
+    return input - 'A' + 10;
+  if(input >= 'a' && input <= 'f')
+    return input - 'a' + 10;
+}
+
+void hex2bin(const char* src, char* target)
+{
+  while(*src && src[1])
+  {
+    *(target++) = char2int(*src)*16 + char2int(src[1]);
+    src += 2;
+  }
+}
+
+
+//menghitung crc
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  uint8_t crcCalc[5]={2,5,0,8,9};
+
+  uint16_t crc=crc16(crcCalc,5);
+  
+  Serial.println(crc,HEX);
+}
+
+uint16_t crc16_update(uint16_t crc, uint8_t a) {
+  int i;
+  crc ^= (uint16_t)a;
+  for (i = 0; i < 8; ++i) {
+    if (crc & 1)
+      crc = (crc >> 1) ^ 0xA001;
+    else
+      crc = (crc >> 1);
+  }
+
+  return crc;
+}
+
+uint16_t crc16(const uint8_t *in,int load) {
+  load ++;
+  uint16_t crc;
+  crc = 0xFFFF;
+  for(int i = 0; i < load; i++) crc = crc16_update(crc, in[i]);
+
+  return crc;
+}

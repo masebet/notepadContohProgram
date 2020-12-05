@@ -1,0 +1,48 @@
+//while
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{    
+  int a=0;
+  while(a<10){
+  	Serial.println(a); 
+    a++;
+  }
+  Serial.println("end"); 
+  delay(5000);
+}
+
+//do
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{    
+  int a=0;
+  do{
+  	Serial.println(a); 
+    a++;
+  }while(a<10);
+  Serial.println("end"); 
+  delay(5000);
+}
+
+//for
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{    
+  for(int i=0;i<10;i++){
+  	Serial.println(i); 
+  }
+  Serial.println("end"); 
+  delay(5000);
+}

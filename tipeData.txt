@@ -1,0 +1,188 @@
+https://babbage.cs.qc.cuny.edu/IEEE-754.old/32bit.html
+float is a 32 bit IEEE 754 single precision Floating Point Number1 bit for the sign, (8 bits for the exponent, and 23* for the value), i.e. float has 7 decimal digits of precision.
+
+double is a 64 bit IEEE 754 double precision Floating Point Number (1 bit for the sign, 11 bits for the exponent, and 52* bits for the value), i.e. double has 15 decimal digits of precision.
+
+//=====================================//
+//memory
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int32_t a = 20000;
+  char b[5];
+  memcpy(b, (char*)&a, 4);
+  
+  Serial.print("{");
+  Serial.print(a,HEX);
+  Serial.print("}\t");
+  
+  for(int i=0;i<4;i++){
+    Serial.print(b[i],HEX);
+  	Serial.print(" ");
+  }
+  Serial.println();
+}
+
+//=====================================//
+basic prosesor
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int8_t  a1;
+  int16_t a2;
+  int32_t a3;
+
+  uint8_t  ua1;
+  uint16_t ua2;
+  uint32_t ua3;
+  
+  Serial.println(sizeof(a3));
+}
+
+
+//=====================================//
+tipedata operasi bineri
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  char 	a1;
+  int	a2;
+  long	a3;
+    
+  float  a4;//32bit IEEE
+  double a5;//mustinya 64 IEEEbit!!!
+  Serial.println(sizeof(a3));
+}
+
+//======================================//
+#define nilai 2000
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  char 	a1 = nilai;
+  int	a2 = nilai;
+  long	a3 = nilai;
+    
+  float  a4 = nilai;//32bit IEEE
+  double a5 = nilai;//mustinya 64 IEEEbit!!!
+  Serial.println(a1);
+}
+
+
+//=====================================//
+#define nilai 100000
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  char 	a1 = nilai;
+  int	a2 = nilai;
+  long	a3 = nilai;
+  
+  unsigned char ua1 = nilai;
+  unsigned int	ua2 = nilai;
+  unsigned long	ua3 = nilai;
+    
+  float  a4 = nilai;//32bit IEEE
+  double a5 = nilai;//mustinya 64 IEEEbit!!!
+  Serial.println(a4);
+}
+
+
+//=======================================//
+//array
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int a[9]={1,2,3,4,5,6,7,8,9};
+  a[3]=20;
+  Serial.println(a[3]);
+}
+//=======================================//
+//array
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int a[3][4] =	{{0,1,2,3},
+				{0,4,5,6},
+  				{0,7,8,9}};
+  int buff = a[0][2];
+  Serial.println(buff);
+}
+
+//========================================//
+//tipedata operasi ascii
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  char a[10]="hallo";
+  char a1[10]={'h','a','l','l','o'};
+  Serial.println(1a);
+}
+
+//========================================//
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  char a[3][10]={"hallo","hai","tes"};
+  Serial.println(a[0]);
+}
+//========================================//
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  char *a = "hallo apa kabar";
+  Serial.println(a);
+}
+//========================================//
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  String a = "hallo apa kabar";
+  a[5] = '_';  
+  Serial.println(a);
+}

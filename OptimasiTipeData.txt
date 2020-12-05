@@ -1,0 +1,103 @@
+//struct
+typedef struct data
+	{
+	char a;
+  	int b;
+  	long c;
+    float d;
+	}s;
+
+struct data s2;
+
+data s3;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println(sizeof(s3));
+}
+
+//struct
+struct data
+	{
+	char a[10];
+	char b[10];  	
+	};
+
+struct data s;
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println(sizeof(s));
+}
+//=========================================//
+//union
+typedef union myUnion{
+  uint32_t a;
+  uint32_t b;
+  uint16_t c;
+  uint8_t d;
+};
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  myUnion u;
+  u.a = 0x12345678;
+  Serial.println(u.d,HEX);
+}
+
+//========================================//
+//union
+
+typedef union {
+  float f;
+  struct{
+          unsigned long mantissa : 23;
+          unsigned int exponent : 8;
+          unsigned int sign : 1;
+  } raw;
+} myfloat;
+
+uint32_t toIEEE(float input){  
+  myfloat var;
+  var.f = input;
+  uint32_t output = (uint32_t)var.raw.sign << 31|(uint32_t)var.raw.exponent<<23|(uint32_t)var.raw.mantissa;
+  return output;
+}
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println(toIEEE(-20),HEX);
+}
+
+//Enum
+void setup()
+{
+  Serial.begin(9600);
+}
+
+typedef enum UBAH{nol=0,satu,dua,tiga};
+
+void loop()
+{
+  Serial.println(dua,HEX);
+}

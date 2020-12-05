@@ -1,0 +1,60 @@
+//
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int a = -3;
+  Serial.println(a,BIN);
+}
+
+//system bilangan
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  //uint8_t a = 0xFF;
+  //uint8_t a = 255;
+  uint8_t a = 0b11111111;
+  Serial.println(a,HEX);
+}
+
+//float
+typedef union myUnion{
+  float f;
+  uint32_t a;
+};
+
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  myUnion u;
+  u.f = -3.1;
+  Serial.println(u.a,BIN);
+}
+
+//variable
+uint8_t global;
+void setup()
+{
+  Serial.begin(9600);
+  uint8_t local;
+  local = 0xFF;
+  global= 8;
+  Serial.println(local,BIN);
+  delay(1000);  
+}
+
+void loop()
+{
+  Serial.println(global,BIN);
+}

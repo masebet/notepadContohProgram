@@ -1,0 +1,123 @@
+https://www.arduino.cc/reference/en/
+https://www.cplusplus.com/
+https://www.cprogramming.com/
+
+https://www.geeksforgeeks.org/c-programming-language/
+https://www.geeksforgeeks.org/c-plus-plus/
+https://www.w3schools.com/cpp/
+https://www.programiz.com/cpp-programming/examples
+
+https://www.duniailkom.com/tutorial-belajar-bahasa-pemrograman-c-bagi-pemula/
+https://www.duniailkom.com/tutorial-belajar-bahasa-pemrograman-c-plus-plus-untuk-pemula/
+
+ask question
+https://stackoverflow.com/questions/tagged/c
+https://stackoverflow.com/questions/tagged/c%2B%2B
+
+youtube kelas terbuka
+//==================================================//
+fungsi
+
+void setup()
+{
+  pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+  task();
+}
+
+void task(){
+  digitalWrite(13, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(13, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+
+//=================================================//
+fungsi dengan input
+
+void setup()
+{
+  pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+  task(500);
+}
+
+void task(int interval){
+  digitalWrite(13, HIGH);
+  delay(interval); // Wait for 1000 millisecond(s)
+  digitalWrite(13, LOW);
+  delay(interval); // Wait for 1000 millisecond(s)
+}
+
+//=================================================//
+fungsi dengan input
+
+void setup()
+{
+  pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+  task(100,1000);
+}
+
+void task(int intervalOn,int intervalOff){
+  digitalWrite(13, HIGH);
+  delay(intervalOn); // Wait for 1000 millisecond(s)
+  digitalWrite(13, LOW);
+  delay(intervalOff); // Wait for 1000 millisecond(s)
+}
+
+//=================================================//
+fungsi dengan input dan output
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(13, OUTPUT);
+}
+
+void loop()
+{
+  Serial.println(task(100,1000));
+}
+
+int task(int intervalOn,int intervalOff){
+  digitalWrite(13, HIGH);
+  delay(intervalOn); // Wait for 1000 millisecond(s)
+  digitalWrite(13, LOW);
+  delay(intervalOff); // Wait for 1000 millisecond(s)
+  return intervalOn+intervalOff;
+}
+
+//=================================================//
+fungsi dengan input dan output
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(13, OUTPUT);
+}
+
+void loop()
+{ 
+  int a;
+  int b = task(100,1000,a);
+  Serial.println(a);
+}
+
+int task(int intervalOn,int intervalOff,int &out2){
+  digitalWrite(13, HIGH);
+  delay(intervalOn); // Wait for 1000 millisecond(s)
+  digitalWrite(13, LOW);
+  delay(intervalOff); // Wait for 1000 millisecond(s)
+  out2 = intervalOn*5;
+  return intervalOn+intervalOff;
+}

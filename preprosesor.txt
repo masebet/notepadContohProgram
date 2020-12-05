@@ -1,0 +1,55 @@
+preprosesor and macro
+#include
+
+
+//==========================//
+#define A 50
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println(A+50);
+}
+
+//=========================//
+#define A "hallo"
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println(A);
+}
+
+#include
+//==========================//
+#define tambah(a,b) (a+b)
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  Serial.println(tambah(40,40));
+}
+//=========================//
+#define A
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+#ifdef A
+  Serial.println("A di definisi");
+#else
+  Serial.println("A tidak definisi");
+#endif
+}
